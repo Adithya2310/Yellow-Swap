@@ -1,79 +1,79 @@
-# 🚀 YellowSwap - Lightning-Fast Cross-Chain Token Swaps
+# YellowSwap - Lightning-Fast Cross-Chain Token Swaps
 
 > **Revolutionary DeFi Trading**: Experience Web2-speed swaps with Web3 security. Trade tokens across multiple blockchains in milliseconds, not minutes.
 
-## 🌟 The Problem We're Solving
+##  The Problem We're Solving
 
 Traditional DeFi trading is broken. Here's why:
 
-**⏰ Painfully Slow Transactions**
+** Painfully Slow Transactions**
 - Regular token swaps take 30-60 seconds to confirm
 - Cross-chain swaps can take 5-20 minutes
 - Users watch helplessly as prices move against them
 
-**💸 Costly Slippage**
+** Costly Slippage**
 - Price movements during confirmation windows destroy profits
 - MEV bots front-run transactions
 - Failed transactions still cost gas fees
 
-**🌉 Risky Bridges**
+** Risky Bridges**
 - Cross-chain swaps rely on centralized, hackable bridges
 - Bridge failures lock funds for days or weeks
 - Complex, multi-step processes confuse users
 
-**😤 Terrible User Experience**
+** Terrible User Experience**
 - Multiple wallet confirmations
 - Constant network switching
 - Anxiety-inducing waiting periods
 - Nothing like the smooth Web2 apps users expect
 
-## ✨ Our Solution: YellowSwap
+##  Our Solution: YellowSwap
 
 YellowSwap leverages the **Yellow SDK** and revolutionary **off-chain payment channels** to deliver:
 
-### 🚄 **Lightning Speed (10x Faster)**
+### **Lightning Speed (10x Faster)**
 - **Instant finality** - swaps complete in milliseconds
 - **No confirmation waiting** - immediate trade execution
 - **Real-time pricing** - no more stale price concerns
 
-### 🎯 **Zero Slippage Protection**
+### **Zero Slippage Protection**
 - **Price locks** during execution
 - **MEV resistance** through off-chain computation
 - **Guaranteed execution** at expected rates
 
-### 🌐 **Seamless Cross-Chain Trading**
+### **Seamless Cross-Chain Trading**
 - **One-click swaps** across 10+ supported chains
 - **No bridge complexity** - unified liquidity pools
 - **No network switching** required in wallet
 
-### 🎨 **Web2-Quality UX**
+### **Web2-Quality UX**
 - **Single wallet signature** for session-based trading
 - **Familiar interface** - just like Uniswap, but instant
 - **Real-time balance updates** across all chains
 - **Progressive Web App** - works on mobile perfectly
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### **Frontend Excellence**
-- **⚛️ Preact** - Lightweight React alternative for blazing performance
-- **📘 TypeScript** - Type-safe development for reliability
-- **⚡ Vite** - Lightning-fast build tool and hot reload
-- **🎨 CSS Modules** - Scoped styling for maintainable UI
-- **📱 Responsive Design** - Perfect on desktop, tablet, and mobile
+- **Preact** - Lightweight React alternative for blazing performance
+- **TypeScript** - Type-safe development for reliability
+- **Vite** - Lightning-fast build tool and hot reload
+- **CSS Modules** - Scoped styling for maintainable UI
+- **Responsive Design** - Perfect on desktop, tablet, and mobile
 
 ### **Blockchain Integration**
-- **🟡 Yellow SDK (@erc7824/nitrolite)** - Off-chain state channels for instant finality
-- **🔗 Viem** - Modern Ethereum library for wallet connections
-- **🌐 Multi-chain Support** - Ethereum, Polygon, Base, Arbitrum, and more
-- **🔒 EIP-712 Signatures** - Secure, transparent transaction signing
+- **Yellow SDK (@erc7824/nitrolite)** - Off-chain state channels for instant finality
+- **Viem** - Modern Ethereum library for wallet connections
+- **Multi-chain Support** - Ethereum, Polygon, Base, Arbitrum, and more
+- **EIP-712 Signatures** - Secure, transparent transaction signing
 
 ### **Performance & Architecture**
-- **⚡ WebSocket Connections** - Real-time price feeds and order updates
-- **🏪 State Channels** - Off-chain computation with on-chain security
-- **💾 Smart Caching** - Instant UI updates with local state management
-- **🔄 Session Management** - Persistent authentication for seamless trading
+- **WebSocket Connections** - Real-time price feeds and order updates
+- **State Channels** - Off-chain computation with on-chain security
+- **Smart Caching** - Instant UI updates with local state management
+- **Session Management** - Persistent authentication for seamless trading
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **Node.js 18+** - [Download here](https://nodejs.org/)
@@ -82,14 +82,14 @@ YellowSwap leverages the **Yellow SDK** and revolutionary **off-chain payment ch
 
 ### Quick Setup
 
-1. **📥 Clone & Install**
+1. **Clone & Install**
    ```bash
    git clone https://github.com/your-username/yellowswap.git
    cd yellowswap
    npm install
    ```
 
-2. **⚙️ Environment Setup**
+2. **Environment Setup**
    Create `.env.local`:
    ```env
    # Yellow Network Configuration
@@ -100,42 +100,42 @@ YellowSwap leverages the **Yellow SDK** and revolutionary **off-chain payment ch
    VITE_SUPPORTED_CHAINS=base,polygon,arbitrum,ethereum
    ```
 
-3. **🏃‍♂️ Start Development**
+3. **Start Development**
    ```bash
    npm run dev
    ```
    Open [http://localhost:5173](http://localhost:5173) - your swap interface is ready!
 
-4. **🔗 Connect Your Wallet**
+4. **Connect Your Wallet**
    - Click "Connect Wallet" in the top-right
    - Approve the one-time session signature
    - Start swapping instantly!
 
-## 🎯 Key Features
+## Key Features
 
-### **💫 Instant Swaps**
+### **Instant Swaps**
 - **Sub-second execution** - Faster than centralized exchanges
 - **No gas estimation anxiety** - Predictable, low fees
 - **Batch operations** - Swap multiple tokens in one action
 
-### **🌈 Multi-Chain Magic**
+### **Multi-Chain Magic**
 - **10+ supported networks** including all major L1s and L2s
 - **Unified liquidity** - Best prices across all chains
 - **Cross-chain arbitrage** opportunities for power users
 
-### **📊 Advanced Trading Tools**
+### **Advanced Trading Tools**
 - **Real-time charts** - Powered by professional data feeds
 - **Limit orders** - Set and forget trading strategies
 - **Price alerts** - Never miss a good entry point
 - **Portfolio tracking** - See all your assets across chains
 
-### **🛡️ Security First**
+### **Security First**
 - **Non-custodial** - You always control your funds
 - **Audited smart contracts** - Battle-tested security
 - **Session keys** - Secure, limited-scope permissions
 - **Open source** - Transparent, community-verified code
 
-## 🎮 User Experience
+## User Experience
 
 ### **For Beginners**
 1. **Connect wallet** → One click, one signature
@@ -151,7 +151,7 @@ YellowSwap leverages the **Yellow SDK** and revolutionary **off-chain payment ch
 - **API access** for algorithmic trading
 - **Portfolio analytics** and P&L tracking
 
-## 🏗️ Architecture Deep Dive
+## Architecture Deep Dive
 
 ### **Off-Chain Computation**
 ```
