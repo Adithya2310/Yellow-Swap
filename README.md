@@ -83,11 +83,11 @@ YellowSwap leverages the **Yellow SDK** and revolutionary **off-chain payment ch
 ### Quick Setup
 
 1. **Clone & Install**
-   ```bash
+    ```bash
    git clone https://github.com/your-username/yellowswap.git
    cd yellowswap
-   npm install
-   ```
+    npm install
+    ```
 
 2. **Environment Setup**
    Create `.env.local`:
@@ -101,9 +101,9 @@ YellowSwap leverages the **Yellow SDK** and revolutionary **off-chain payment ch
    ```
 
 3. **Start Development**
-   ```bash
-   npm run dev
-   ```
+    ```bash
+    npm run dev
+    ```
    Open [http://localhost:5173](http://localhost:5173) - your swap interface is ready!
 
 4. **Connect Your Wallet**

@@ -12,7 +12,8 @@
     "dependencies": {
         "@erc7824/nitrolite": "^0.3.0",
         "preact": "^10.26.9",
-        "viem": "2.32.0"
+        "viem": "2.32.0",
+        "ws": "^8.18.3"
     },
     "devDependencies": {
         "@preact/preset-vite": "^2.10.2",

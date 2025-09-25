@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { createWalletClient, custom, type Address, type WalletClient } from 'viem';
-import { baseSepolia } from 'viem/chains';
+import { polygonAmoy } from 'viem/chains';
 // CHAPTER 3: Authentication imports
 // CHAPTER 4: Add balance fetching imports
 import {
@@ -17,12 +17,16 @@ import {
     type BalanceUpdateResponse,
     type TransferResponse,
 } from '@erc7824/nitrolite';
-import { PostList } from './components/PostList/PostList';
-// CHAPTER 4: Import the new BalanceDisplay component
+// YellowSwap: Import SwapInterface component
+import { SwapInterface } from './components/SwapInterface/SwapInterface';
+// Keep BalanceDisplay for showing user balance
 import { BalanceDisplay } from './components/BalanceDisplay/BalanceDisplay';
-// FINAL: Import useTransfer hook
+// Keep useTransfer hook for swap functionality
 import { useTransfer } from './hooks/useTransfer';
-import { posts } from './data/posts';
+
+// Comment out old post-related imports
+// import { PostList } from './components/PostList/PostList';
+// import { posts } from './data/posts';
 import { webSocketService, type WsStatus } from './lib/websocket';
 // CHAPTER 3: Authentication utilities
 import {
@@ -41,14 +45,14 @@ declare global {
     }
 }
 
-// CHAPTER 3: EIP-712 domain for Nexus authentication
+// YellowSwap: EIP-712 domain for authentication
 const getAuthDomain = () => ({
-    name: 'Nexus',
+    name: 'YellowSwap',
 });
 
-// CHAPTER 3: Authentication constants
-const AUTH_SCOPE = 'nexus.app';
-const APP_NAME = 'Nexus';
+// YellowSwap: Authentication constants
+const AUTH_SCOPE = 'yellowswap.com';
+const APP_NAME = 'YellowSwap';
 const SESSION_DURATION = 3600; // 1 hour
 
 export function App() {
@@ -69,8 +73,8 @@ export function App() {
     const [isTransferring, setIsTransferring] = useState(false);
     const [transferStatus, setTransferStatus] = useState<string | null>(null);
     
-    // FINAL: Use transfer hook
-    const { handleTransfer: transferFn } = useTransfer(sessionKey, isAuthenticated);
+    // Keep useTransfer hook for future swap functionality
+    // const { handleTransfer: transferFn } = useTransfer(sessionKey, isAuthenticated);
 
     useEffect(() => {
         // CHAPTER 3: Get or generate session key on startup (IMPORTANT: Store in localStorage)
@@ -91,9 +95,10 @@ export function App() {
         };
     }, []);
 
-    // CHAPTER 3: Auto-trigger authentication when conditions are met
+    // YellowSwap: Auto-trigger authentication when conditions are met
     useEffect(() => {
         if (account && sessionKey && wsStatus === 'Connected' && !isAuthenticated && !isAuthAttempted) {
+            console.log('Starting authentication process...');
             setIsAuthAttempted(true);
 
             // Generate fresh timestamp for this auth attempt
@@ -111,7 +116,11 @@ export function App() {
             };
 
             createAuthRequestMessage(authParams).then((payload) => {
+                console.log('Sending auth request:', payload);
                 webSocketService.send(payload);
+            }).catch((error) => {
+                console.error('Failed to create auth request:', error);
+                setIsAuthAttempted(false);
             });
         }
     }, [account, sessionKey, wsStatus, isAuthenticated, isAuthAttempted]);
@@ -149,22 +158,21 @@ export function App() {
         }
     }, [isAuthenticated, sessionKey, account]);
 
-    // FINAL: Handle support function for PostList
-    const handleSupport = async (recipient: string, amount: string) => {
+    // YellowSwap: Handle swap function
+    const handleSwap = async (fromToken: string, toToken: string, amount: string) => {
         setIsTransferring(true);
-        setTransferStatus('Sending support...');
+        setTransferStatus(`Swapping ${amount} ${fromToken} for ${toToken}...`);
         
-        const result = await transferFn(recipient as Address, amount);
+        // For now, we'll simulate a swap using the transfer function
+        // In a real implementation, this would call a swap-specific function
+        console.log(`Swapping ${amount} ${fromToken} for ${toToken}`);
         
-        if (result.success) {
-            setTransferStatus('Support sent!');
-        } else {
+        // Simulate swap completion
+        setTimeout(() => {
             setIsTransferring(false);
             setTransferStatus(null);
-            if (result.error) {
-                alert(result.error);
-            }
-        }
+            alert(`Successfully swapped ${amount} ${fromToken} for ${toToken}!`);
+        }, 2000);
     };
 
     // CHAPTER 3: Handle server messages for authentication
@@ -268,10 +276,17 @@ export function App() {
                     alert(`Transfer failed: ${response.params.error}`);
                 } else {
                     // Other errors (like auth failures)
+                    console.log('Authentication error, resetting...');
                     removeJWT();
-                    removeSessionKey();
-                    alert(`Error: ${response.params.error}`);
+                    // Don't remove session key immediately, just reset auth attempt
                     setIsAuthAttempted(false);
+                    setIsAuthenticated(false);
+                    // Retry authentication after a delay
+                    setTimeout(() => {
+                        if (account && sessionKey && wsStatus === 'Connected') {
+                            setIsAuthAttempted(false);
+                        }
+                    }, 3000);
                 }
             }
         };
@@ -287,15 +302,15 @@ export function App() {
         }
 
         try {
-            // Check current network - Base Sepolia testnet
+            // Check current network - Polygon Amoy testnet
             const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-            if (chainId !== '0x14A34') { // Not Base Sepolia (chain ID 84532 = 0x14A34)
-                alert('Please switch to Base Sepolia testnet in MetaMask for this workshop');
+            if (chainId !== '0x13882') { // Polygon Amoy testnet (chain ID 80002 = 0x13882)
+                alert('Please switch to Polygon Amoy testnet in MetaMask for this workshop');
                 // Note: In production, you might want to automatically switch networks
             }
 
             const tempClient = createWalletClient({
-                chain: baseSepolia,
+                chain: polygonAmoy,
                 transport: custom(window.ethereum),
             });
             const [address] = await tempClient.requestAddresses();
@@ -305,10 +320,10 @@ export function App() {
                 return;
             }
 
-            // CHAPTER 3: Create wallet client with account for EIP-712 signing
+            // YellowSwap: Create wallet client with account for EIP-712 signing
             const walletClient = createWalletClient({
                 account: address,
-                chain: baseSepolia,
+                chain: polygonAmoy,
                 transport: custom(window.ethereum),
             });
 
@@ -321,31 +336,52 @@ export function App() {
         }
     };
 
+    const disconnectWallet = () => {
+        // Clear all wallet-related state
+        setWalletClient(null);
+        setAccount(null);
+        setSessionKey(null);
+        setIsAuthenticated(false);
+        setIsAuthAttempted(false);
+        setBalances(null);
+        setIsLoadingBalances(false);
+        setTransferStatus(null);
+        setIsTransferring(false);
+        
+        // Clear stored session data
+        removeSessionKey();
+        removeJWT();
+        
+        console.log('Wallet disconnected successfully');
+    };
+
     const formatAddress = (address: Address) => `${address.slice(0, 6)}...${address.slice(-4)}`;
 
     return (
         <div className="app-container">
             <header className="header">
                 <div className="header-content">
-                    <h1 className="logo">Nexus</h1>
-                    <p className="tagline">Decentralized insights for the next generation of builders</p>
+                    <h1 className="logo">YellowSwap</h1>
+                    <p className="tagline">Lightning-Fast Cross-Chain Token Swaps</p>
                 </div>
                 <div className="header-controls">
-                    {/* CHAPTER 4: Display balance when authenticated */}
-                    {isAuthenticated && (
+                    {/* Display balance when authenticated */}
+                    {/* {isAuthenticated && (
                         <BalanceDisplay
                             balance={
-                                isLoadingBalances ? 'Loading...' : (balances?.['eth'] ?? null)
+                                isLoadingBalances ? 'Loading...' : (balances?.['matic'] ?? null)
                             }
-                            symbol="ETH"
+                            symbol="MATIC"
                         />
-                    )}
-                    <div className={`ws-status ${wsStatus.toLowerCase()}`}>
+                    )} */}
+                    {/* <div className={`ws-status ${wsStatus.toLowerCase()}`}>
                         <span className="status-dot"></span> {wsStatus}
-                    </div>
+                    </div> */}
                     <div className="wallet-connector">
                         {account ? (
-                            <div className="wallet-info">Connected: {formatAddress(account)}</div>
+                            <button onClick={disconnectWallet} className="disconnect-button">
+                                Disconnect Wallet
+                            </button>
                         ) : (
                             <button onClick={connectWallet} className="connect-button">
                                 Connect Wallet
@@ -356,15 +392,22 @@ export function App() {
             </header>
 
             <main className="main-content">
-                
-                {/* FINAL: Status message for transfers */}
+                {/* Status message for swaps */}
                 {transferStatus && (
                     <div className="transfer-status">
                         {transferStatus}
                     </div>
                 )}
                 
-                {/* CHAPTER 4: Pass authentication state to enable balance-dependent features */}
+                {/* YellowSwap Interface */}
+                <SwapInterface 
+                    isWalletConnected={!!account} 
+                    isAuthenticated={isAuthenticated}
+                    onSwap={handleSwap}
+                />
+
+                {/* Comment out old PostList component */}
+                {/* 
                 <PostList 
                     posts={posts} 
                     isWalletConnected={!!account} 
@@ -372,6 +415,7 @@ export function App() {
                     onTransfer={handleSupport}
                     isTransferring={isTransferring}
                 />
+                */}
             </main>
         </div>
     );

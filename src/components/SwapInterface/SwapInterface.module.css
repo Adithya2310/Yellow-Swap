@@ -1,0 +1,440 @@
+/* YellowSwap Theme Variables */
+:root {
+    --yellow-primary: #FFD700;
+    --yellow-secondary: #FFF8DC;
+    --yellow-accent: #FFEB3B;
+    --yellow-dark: #B8860B;
+    --white: #FFFFFF;
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #EEEEEE;
+    --gray-300: #E0E0E0;
+    --gray-400: #BDBDBD;
+    --gray-500: #9E9E9E;
+    --gray-600: #757575;
+    --gray-700: #616161;
+    --gray-800: #424242;
+    --gray-900: #212121;
+    --success: #4CAF50;
+    --error: #F44336;
+    --warning: #FF9800;
+}
+
+.swapContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    min-height: 80vh;
+}
+
+.swapCard {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.1);
+    border: 2px solid var(--yellow-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.swapCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--yellow-primary), var(--yellow-accent));
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.settingsButton {
+    background: var(--gray-100);
+    border: none;
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settingsButton:hover {
+    background: var(--yellow-secondary);
+    transform: rotate(90deg);
+}
+
+.tokenSection {
+    background: var(--gray-50);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray-200);
+    transition: all 0.2s ease;
+}
+
+.tokenSection:hover {
+    border-color: var(--yellow-primary);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1);
+}
+
+.tokenHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.balance {
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.balance:hover {
+    color: var(--yellow-dark);
+}
+
+.tokenInput {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tokenSelector {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--white);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--gray-300);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.tokenSelector:hover {
+    border-color: var(--yellow-primary);
+    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+}
+
+.tokenLogo {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.tokenSymbol {
+    font-weight: 600;
+    color: var(--gray-900);
+    font-size: 1rem;
+}
+
+.dropdown {
+    color: var(--gray-400);
+    font-size: 0.75rem;
+    margin-left: auto;
+}
+
+.amountInput {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    text-align: right;
+    outline: none;
+    max-width: 200px;
+    overflow: hidden;
+}
+
+.amountInput::placeholder {
+    color: var(--gray-400);
+}
+
+.tokenValue {
+    text-align: right;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-weight: 500;
+}
+
+.swapButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.swapTokensButton {
+    background: var(--white);
+    border: 2px solid var(--yellow-primary);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: var(--yellow-dark);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.swapTokensButton:hover {
+    background: var(--yellow-primary);
+    color: var(--white);
+    transform: rotate(180deg);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+.swapDetails {
+    background: var(--yellow-secondary);
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--yellow-primary);
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.detailRow:last-child {
+    margin-bottom: 0;
+}
+
+.detailRow span:first-child {
+    color: var(--gray-600);
+}
+
+.detailRow span:last-child {
+    color: var(--gray-900);
+    font-weight: 600;
+}
+
+.priceImpact {
+    color: var(--success) !important;
+}
+
+.swapButton {
+    width: 100%;
+    background: linear-gradient(135deg, var(--yellow-primary), var(--yellow-accent));
+    border: none;
+    border-radius: 16px;
+    padding: 1.25rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.swapButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.swapButton:hover::before {
+    left: 100%;
+}
+
+.swapButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+}
+
+.swapButton.disabled {
+    background: var(--gray-300);
+    color: var(--gray-500);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.swapButton.disabled::before {
+    display: none;
+}
+
+.speedIndicator {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.speedBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--yellow-secondary);
+    color: var(--yellow-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--yellow-primary);
+}
+
+.marketStats {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.1);
+    border: 2px solid var(--yellow-secondary);
+    height: fit-content;
+}
+
+.statsTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.statCard {
+    background: var(--gray-50);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--gray-200);
+    transition: all 0.2s ease;
+}
+
+.statCard:hover {
+    border-color: var(--yellow-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.1);
+}
+
+.statHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.statLogo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.statSymbol {
+    font-weight: 600;
+    color: var(--gray-900);
+    font-size: 0.875rem;
+}
+
+.statPrice {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.25rem;
+}
+
+.statChange {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--success);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .swapContainer {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .swapCard,
+    .marketStats {
+        padding: 1.5rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tokenInput {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .amountInput {
+        text-align: left;
+        font-size: 1.25rem;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.swapButton:disabled {
+    animation: pulse 2s infinite;
+}

@@ -13,7 +13,7 @@ class WebSocketService {
     public connect() {
         if (this.socket && this.socket.readyState < 2) return;
 
-        const wsUrl = import.meta.env.VITE_NITROLITE_WS_URL;
+        const wsUrl = import.meta.env.VITE_NITROLITE_WS_URL || 'wss://clearnet-sandbox.yellow.com/ws';
 
         if (!wsUrl) {
             console.error('VITE_NITROLITE_WS_URL is not set');
